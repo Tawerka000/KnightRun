@@ -4,33 +4,74 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Shield : MonoBehaviour
 {
-    public float time;
-    public static int capacity;
-    public int max_capacity;
-    public Image shields;
-    public float fill;
-    void Start()
+    [SerializeField] private float time = 20f;
+    private float timer = 0f;
+    [SerializeField] private int capacity = 0;
+    [SerializeField] private int maxCapacity = 2;
+    [SerializeField] private Image[] shieldsImages;
+    private float fill;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip getShield;
+    private void Start()
     {
-        fill = 0f;
-        capacity = 0;
-        StartCoroutine(CapacityIncrease());
-    }
-    void Update()
-    {
-        shields.fillAmount = fill + 0.05f * capacity;
-    }
-    void Repeat()
-    {
-        StartCoroutine(CapacityIncrease());
-    }
-    IEnumerator CapacityIncrease()
-    {
-        yield return new WaitForSeconds(time);
-        if (capacity < max_capacity)
+        foreach (Image image in shieldsImages)
         {
-            capacity++;
+            image.fillAmount = 0;
         }
-        Repeat();
+        audioSource = GetComponent<AudioSource>();
+        maxCapacity = shieldsImages.Length;
     }
-
+    private void Update()
+    {
+        if (GlobalData.isPaused)
+        {
+            return;
+        }
+        if (timer < time && capacity < maxCapacity)
+        {
+            timer += Time.deltaTime;
+            shieldsImages[capacity].fillAmount += (1/time) * Time.deltaTime;
+        }
+        else
+        {
+            timer = 0f;
+            if (capacity < maxCapacity)
+            {
+                audioSource.PlayOneShot(getShield);
+                capacity++;
+            }
+        }
+    }
+    public bool UseShield()
+    {
+        if(capacity > 0)
+        {
+            if (capacity == maxCapacity)
+            {
+                capacity--;
+                float a = shieldsImages[capacity].fillAmount;
+                for (int i = capacity; i < maxCapacity; i++)
+                {
+                    shieldsImages[i].fillAmount = 0;
+                }
+                shieldsImages[capacity - 1].fillAmount = a;
+                
+            }
+            else
+            {
+                float a = shieldsImages[capacity].fillAmount;
+                for (int i = capacity; i < maxCapacity; i++)
+                {
+                    shieldsImages[i].fillAmount = 0;
+                }
+                capacity--;
+                shieldsImages[capacity].fillAmount = a;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

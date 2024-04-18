@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ParallaxBehaviour : MonoBehaviour
 {
-    public float additionalScrollSpeed;
-
-    public GameObject[] backgrounds;
-    public int AmountOfBackgrounds;
-
-    public float[] scrollSpeed;
+    [SerializeField] private Renderer[] backgrounds;
+    
+    [SerializeField] private float[] scrollSpeed;
 
     private void FixedUpdate ()
     {
-        for(int background = 0; background < AmountOfBackgrounds; background++)
+        if (GlobalData.isPaused)
         {
-            Renderer rend = backgrounds[background].GetComponent<Renderer>();
-            float offset = Time.time * (scrollSpeed[background] + additionalScrollSpeed);
-            rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+            return;
+        }
+        for (int background = 0; background < backgrounds.Length; background++)
+        {
+            float offset = Time.time * (scrollSpeed[background]);
+            backgrounds[background].material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
         }
     }
 }

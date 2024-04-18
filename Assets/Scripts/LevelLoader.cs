@@ -6,22 +6,10 @@ using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
-    public bool isClicked;
-    public string LevelName;
-    void Start()
-    {
-
-    }
+    [SerializeField] private string LevelName;
     public void OnClick()
     {
-        isClicked = true;
-    }
-    void Update()
-    {
-        if (isClicked)
-        {
-            SceneManager.LoadScene(LevelName);
-            Time.timeScale = 1;
-        }
+        SceneManager.LoadScene(LevelName);
+        GlobalData.Unpause();
     }
 }

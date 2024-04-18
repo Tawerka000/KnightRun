@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4346710657894665913}
   - component: {fileID: 1318533444264873816}
   m_Layer: 1
-  m_Name: GameObject
+  m_Name: GetPointTrigger
   m_TagString: score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,12 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6206154903406683267}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2142028343562143736}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1318533444264873816
 BoxCollider2D:
@@ -41,7 +42,26 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.00743844, y: 0.18956101}
@@ -68,7 +88,7 @@ GameObject:
   - component: {fileID: 2142028343562143736}
   - component: {fileID: 7802110813706960693}
   - component: {fileID: 5823267106656113585}
-  - component: {fileID: 5023887942247364066}
+  - component: {fileID: 1905560129804845514}
   - component: {fileID: -3400111101519679373}
   - component: {fileID: -2835903741344898451}
   m_Layer: 1
@@ -85,13 +105,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6618156384700949452}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.06, y: 1.88, z: 0}
   m_LocalScale: {x: -3.224648, y: 2.5495112, z: 0.90414}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4346710657894665913}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7802110813706960693
 SpriteRenderer:
@@ -104,10 +125,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -131,7 +154,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 4944230376442633554, guid: c6ac0078f39473048b9f54d791095f35,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,7 +177,26 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.011157736, y: -0.054573607}
@@ -170,7 +212,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19825634, y: 0.3133476}
   m_EdgeRadius: 0
---- !u!114 &5023887942247364066
+--- !u!114 &1905560129804845514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,17 +221,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6618156384700949452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f668e2aee0a1061438280e7b4081562a, type: 3}
+  m_Script: {fileID: 11500000, guid: 86f862839a599bc488a43a408e6a4bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.08
   dir: {x: -1, y: 0}
-  health: 10
-  str: MushroomDeath
-  limit: -9
+  audioSource: {fileID: 0}
+  runSound: {fileID: 8300000, guid: 1636a9793b5584e459010112171a13b0, type: 3}
+  deathSound: {fileID: 8300000, guid: 352884163b17b9945a25a7ea5f193b5d, type: 3}
+  runRange: -9
+  killEnemyPoints: 5
+  isKillable: 1
 --- !u!95 &-3400111101519679373
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -202,10 +247,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &-2835903741344898451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -216,8 +263,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1636a9793b5584e459010112171a13b0, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
